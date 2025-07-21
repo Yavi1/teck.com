@@ -25,9 +25,8 @@
       align-items: center;
       padding: 1rem 2rem;
     }
-    nav .logo {
-      display: flex;
-      align-items: center;
+    nav .logo img {
+      height: 50px;
     }
     nav ul {
       list-style: none;
@@ -50,14 +49,22 @@
       max-width: 1100px;
       margin: 100px auto 3rem auto;
       padding: 0 2rem;
-    }
-    h1 {
-      font-weight: 700;
-      font-size: 2.8rem;
-      margin-bottom: 1rem;
-      color: #0055a5;
       text-align: center;
     }
+
+    h1 {
+      font-weight: 700;
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: #0055a5;
+    }
+    p.description {
+      max-width: 700px;
+      margin: 0 auto 3rem auto;
+      font-size: 1.3rem;
+      color: #555;
+    }
+
     .services-list {
       display: flex;
       gap: 2rem;
@@ -73,14 +80,15 @@
       text-align: center;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       display: block;
+      cursor: pointer;
     }
     .service-item:hover {
       transform: translateY(-10px);
       box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
     }
     .service-item .icon {
-      font-size: 2rem;
-      margin-bottom: 0.5rem;
+      font-size: 2.5rem;
+      margin-bottom: 0.7rem;
     }
     .service-item h2 {
       color: #0055a5;
@@ -92,11 +100,75 @@
     }
 
     footer {
-      background: #003f73;
-      color: white;
-      padding: 1.5rem 2rem;
-      text-align: center;
+      background: #111;
+      color: #eee;
+      padding: 3rem 2rem 1rem 2rem;
       font-size: 0.9rem;
+      border-radius: 10px;
+      max-width: 1100px;
+      margin: 2rem auto 4rem auto;
+    }
+
+    .footer-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+    }
+
+    .footer-col {
+      flex: 1 1 200px;
+      min-width: 180px;
+    }
+
+    .footer-col h3 {
+      margin-bottom: 1rem;
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: #fff;
+      border-bottom: 2px solid #444;
+      padding-bottom: 0.3rem;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-col ul li {
+      margin-bottom: 0.6rem;
+    }
+
+    .footer-col ul li a {
+      color: #ccc;
+    }
+
+    .footer-col ul li a:hover {
+      color: #ffd600;
+    }
+
+    .footer-contact a {
+      color: #ccc;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid #333;
+      padding-top: 1rem;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 0.85rem;
+    }
+
+    .footer-left {
+      color: #aaa;
+    }
+
+    .footer-right a {
+      color: #aaa;
+      margin-left: 15px;
     }
 
     @media (max-width: 768px) {
@@ -104,65 +176,104 @@
         flex-direction: column;
         align-items: center;
       }
-      h1 {
-        font-size: 2rem;
+      .footer-container {
+        flex-direction: column;
+      }
+      .footer-bottom {
+        flex-direction: column;
+        align-items: center;
       }
     }
   </style>
 </head>
 <body>
-  <header>
-    <nav>
-      <a href="index.html" class="logo" aria-label="Yavor Tech Services - Accueil">
-        <svg width="260" height="40" viewBox="0 0 260 40" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Logo Yavor Tech Services">
-          <text x="0" y="28" font-family="Montserrat" font-size="24" font-weight="700" fill="#0055a5">Yavor</text>
-          <text x="65" y="28" font-family="Montserrat" font-size="20" font-weight="400" fill="#003f73">Tech Services</text>
-        </svg>
-      </a>
+<header>
+  <nav>
+    <div class="logo">
+      <a href="index.html"><img src="Images/YavorTechServices.svg" alt="Yavor Tech Services Logo" /></a>
+    </div>
+    <ul>
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="services.html" class="active">Services</a></li>
+      <li><a href="tarifs.html">Tarifs</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <h1>Nos Services</h1>
+  <p class="description">Maintenance informatique, dépannage, et solutions sur mesure pour particuliers et professionnels.</p>
+  <div class="services-list">
+    <a href="contact.html" class="service-item" aria-label="Contacter pour Dépannage informatique">
+      <div class="icon">🛠️</div>
+      <h2>Dépannage informatique</h2>
+      <p>Réparation rapide et fiable pour PC, intervention à domicile ou à distance.</p>
+    </a>
+    <a href="contact.html" class="service-item" aria-label="Contacter pour Maintenance & Assistance">
+      <div class="icon">🔧</div>
+      <h2>Maintenance & Assistance</h2>
+      <p>Entretien préventif, optimisation système, et support technique personnalisé.</p>
+    </a>
+    <a href="contact.html" class="service-item" aria-label="Contacter pour Sauvegarde de données">
+      <div class="icon">💾</div>
+      <h2>Sauvegarde de données</h2>
+      <p>Mise en place de solutions sécurisées pour protéger vos fichiers importants.</p>
+    </a>
+    <a href="contact.html" class="service-item" aria-label="Contacter pour Conseil & Formation">
+      <div class="icon">📘</div>
+      <h2>Conseil & Formation</h2>
+      <p>Accompagnement et formation pour mieux utiliser vos outils informatiques.</p>
+    </a>
+    <a href="contact.html" class="service-item" aria-label="Contacter pour Montage PC sur mesure">
+      <div class="icon">🖥️</div>
+      <h2>Montage PC sur mesure</h2>
+      <p>Configuration personnalisée, assemblage professionnel et tests complets pour un PC adapté à vos besoins.</p>
+    </a>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-container">
+    <div class="footer-col footer-contact">
+      <h3>Contactez-nous</h3>
+      <p>Yavor Tech Services</p>
+      <p>123 Rue de l’Informatique<br />1200 Genève, Suisse</p>
+      <p>Email : <a href="mailto:contact@yavortech.ch">contact@yavortech.ch</a></p>
+      <p>Tél. : <a href="tel:+41221234567">+41 22 123 45 67</a></p>
+    </div>
+    <div class="footer-col">
+      <h3>Liens rapides</h3>
       <ul>
         <li><a href="index.html">Accueil</a></li>
-        <li><a href="services.html" class="active">Services</a></li>
+        <li><a href="services.html">Services</a></li>
         <li><a href="tarifs.html">Tarifs</a></li>
         <li><a href="blog.html">Blog</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
-    </nav>
-  </header>
-
-  <main>
-    <h1>Nos Services</h1>
-    <div class="services-list">
-      <a href="contact.html" class="service-item" aria-label="Contacter pour Dépannage informatique">
-        <div class="icon">🛠️</div>
-        <h2>Dépannage informatique</h2>
-        <p>Réparation rapide et fiable pour PC, intervention à domicile ou à distance.</p>
-      </a>
-      <a href="contact.html" class="service-item" aria-label="Contacter pour Maintenance & Assistance">
-        <div class="icon">🔧</div>
-        <h2>Maintenance & Assistance</h2>
-        <p>Entretien préventif, optimisation système, et support technique personnalisé.</p>
-      </a>
-      <a href="contact.html" class="service-item" aria-label="Contacter pour Sauvegarde de données">
-        <div class="icon">💾</div>
-        <h2>Sauvegarde de données</h2>
-        <p>Mise en place de solutions sécurisées pour protéger vos fichiers importants.</p>
-      </a>
-      <a href="contact.html" class="service-item" aria-label="Contacter pour Conseil & Formation">
-        <div class="icon">📘</div>
-        <h2>Conseil & Formation</h2>
-        <p>Accompagnement et formation pour mieux utiliser vos outils informatiques.</p>
-      </a>
-      <a href="contact.html" class="service-item" aria-label="Contacter pour Montage PC sur mesure">
-        <div class="icon">🖥️</div>
-        <h2>Montage PC sur mesure</h2>
-        <p>Configuration personnalisée, assemblage professionnel et tests complets pour un PC adapté à vos besoins.</p>
-      </a>
     </div>
-  </main>
+    <div class="footer-col">
+      <h3>Infos légales</h3>
+      <ul>
+        <li><a href="#">Mentions légales</a></li>
+        <li><a href="#">Politique de confidentialité</a></li>
+        <li><a href="#">Conditions générales</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-left">
+      &copy; <span id="year"></span> Yavor Tech Services - Tous droits réservés.
+    </div>
+    <div class="footer-right">
+      <a href="#">Instagram</a>
+    </div>
+  </div>
+</footer>
 
-  <footer>
-    <p>© 2025 Yavor Tech Services — Tous droits réservés</p>
-  </footer>
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
 </body>
 </html>
-

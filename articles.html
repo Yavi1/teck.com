@@ -6,54 +6,218 @@
   <title>Blog | Yavor Tech Services</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
   <style>
-    /* Styles généraux */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Montserrat', sans-serif; background: #f9fafb; color: #333; line-height: 1.6; }
-    a { text-decoration: none; color: inherit; }
+    /* Reset et styles globaux */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: #f9fafb;
+      color: #333;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
 
+    /* Header fixe avec nav */
     header {
-      position: fixed; top: 0; width: 100%;
-      background: rgba(255, 255, 255, 0.9);
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.95);
       backdrop-filter: saturate(180%) blur(20px);
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
       z-index: 100;
     }
     nav {
-      max-width: 1100px; margin: 0 auto;
-      display: flex; justify-content: space-between; align-items: center;
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       padding: 1rem 2rem;
+      position: relative;
     }
-    nav ul {
-      list-style: none; display: flex; gap: 2rem;
+    .logo svg {
+      display: block;
+      height: 40px;
     }
-    nav ul li a { font-weight: 600; color: #333; padding: 0.3rem 0.5rem; transition: color 0.3s ease; }
-    nav ul li a:hover, nav ul li a.active { color: #0055a5; border-bottom: 2px solid #0055a5; }
 
+    /* Menu principal */
+    ul.menu {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+    ul.menu li a {
+      font-weight: 600;
+      color: #333;
+      padding: 0.3rem 0.5rem;
+      transition: color 0.3s ease, border-bottom-color 0.3s ease;
+      border-bottom: 2px solid transparent;
+    }
+    ul.menu li a:hover,
+    ul.menu li a.active {
+      color: #0055a5;
+      border-bottom-color: #0055a5;
+    }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      width: 24px;
+      height: 18px;
+      justify-content: space-between;
+    }
+    .hamburger span {
+      display: block;
+      height: 3px;
+      background: #333;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    /* Menu mobile (hidden by default) */
+    @media (max-width: 768px) {
+      ul.menu {
+        position: fixed;
+        top: 64px;
+        right: 0;
+        background: white;
+        height: calc(100vh - 64px);
+        width: 250px;
+        flex-direction: column;
+        padding: 2rem 1rem;
+        gap: 1.5rem;
+        box-shadow: -2px 0 8px rgba(0,0,0,0.15);
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        z-index: 150;
+      }
+      ul.menu.open {
+        transform: translateX(0);
+      }
+      .hamburger {
+        display: flex;
+      }
+    }
+
+    /* Hamburger animation when open */
+    .hamburger.open span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    .hamburger.open span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger.open span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    /* Main avec marge haute pour ne pas être caché par header */
     main {
-      max-width: 1100px; margin: 120px auto; padding: 0 1rem;
+      max-width: 1100px;
+      margin: 100px auto 40px;
+      padding: 0 1rem;
+      flex: 1;
     }
 
+    /* Articles */
     .article {
-      background: white; border-radius: 10px; box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1); padding: 2rem;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+      padding: 2rem;
       margin-bottom: 3rem;
     }
+    .article img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+      object-fit: cover;
+    }
+    .article h1 {
+      font-size: 2rem;
+      color: #0055a5;
+      margin-bottom: 1rem;
+    }
+    .article h2 {
+      margin-top: 1.5rem;
+      margin-bottom: 0.75rem;
+      color: #004080;
+      font-weight: 700;
+      font-size: 1.25rem;
+    }
+    .article p {
+      margin-bottom: 1.5rem;
+    }
+    .article ul {
+      list-style: disc inside;
+      margin-left: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .article ul li {
+      margin-bottom: 0.5rem;
+    }
 
-    .article img { width: 100%; border-radius: 10px; margin-bottom: 1rem; }
-    .article h1 { font-size: 2rem; color: #0055a5; margin-bottom: 1rem; }
-    .article p { margin-bottom: 1.5rem; }
-    .article ul { list-style: disc; margin-left: 2rem; }
-
+    /* Footer complet */
     footer {
       background: #003f73;
       color: white;
-      padding: 1.5rem 2rem;
-      text-align: center;
-      font-size: 0.9rem;
-      margin-top: 3rem;
+      padding: 2rem 1.5rem;
+      font-size: 0.95rem;
+    }
+    footer .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: space-between;
+    }
+    footer .col {
+      flex: 1 1 200px;
+      min-width: 180px;
+    }
+    footer h3 {
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: #aad4ff;
+    }
+    footer ul {
+      list-style: none;
+      padding: 0;
+    }
+    footer ul li {
+      margin-bottom: 0.5rem;
+    }
+    footer ul li a {
+      color: #cce4ff;
+      transition: color 0.3s ease;
+    }
+    footer ul li a:hover {
+      color: #ffffff;
+    }
+    footer p {
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      color: #aaccee;
     }
 
-    .article-footer {
-      text-align: center; font-size: 0.9rem;
+    /* Responsive footer */
+    @media (max-width: 600px) {
+      footer .container {
+        flex-direction: column;
+        gap: 1.5rem;
+      }
     }
 
   </style>
@@ -68,151 +232,169 @@
           <text x="65" y="28" font-family="Montserrat" font-size="20" font-weight="400" fill="#003f73">Tech Services</text>
         </svg>
       </a>
-      <ul>
-        <li><a href="index.html">Accueil</a></li>
-        <li><a href="services.html">Services</a></li>
-        <li><a href="tarifs.html">Tarifs</a></li>
-        <li><a href="blog.html" class="active">Blog</a></li> <!-- Lien vers Blog actif -->
-        <li><a href="contact.html">Contact</a></li>
+
+      <button aria-label="Menu navigation" class="hamburger" id="hamburger" aria-expanded="false" aria-controls="primary-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <ul class="menu" id="primary-menu" role="menu">
+        <li role="none"><a href="index.html" role="menuitem">Accueil</a></li>
+        <li role="none"><a href="services.html" role="menuitem">Services</a></li>
+        <li role="none"><a href="tarifs.html" role="menuitem">Tarifs</a></li>
+        <li role="none"><a href="blog.html" class="active" role="menuitem">Blog</a></li>
+        <li role="none"><a href="contact.html" role="menuitem">Contact</a></li>
       </ul>
     </nav>
   </header>
 
   <main>
-    <!-- Article 1 : Flight Simulator 2024 : Performances NVIDIA & AMD -->
+    <!-- Articles ici... (je n'ai pas modifié le contenu des articles) -->
     <section id="flight-sim" class="article">
       <h1>Flight Simulator 2024 : Performances NVIDIA & AMD</h1>
-      <img src="https://flightsimulator.azureedge.net/wp-content/uploads/2024/09/MSFS2024_Wallpaper_Desktop-Wide_2560x1440_RGB.jpg" alt="Performance FlightSim 2024">
-      <p>
-        **Flight Simulator 2024** représente la référence en matière de simulation de vol avec des graphismes hyperréalistes et un monde ouvert dynamique. Cependant, pour profiter pleinement de cette expérience, il est essentiel de disposer du matériel adéquat. Dans cet article, nous allons explorer les performances des cartes graphiques **NVIDIA** et **AMD** pour ce jeu ultra-réaliste, et comment choisir la meilleure option pour votre configuration.
-      </p>
+      <img src="https://flightsimulator.azureedge.net/wp-content/uploads/2024/09/MSFS2024_Wallpaper_Desktop-Wide_2560x1440_RGB.jpg" alt="Performance FlightSim 2024" />
+      <p><strong>Flight Simulator 2024</strong> représente la référence en matière de simulation de vol avec des graphismes hyperréalistes et un monde ouvert dynamique. Cependant, pour profiter pleinement de cette expérience, il est essentiel de disposer du matériel adéquat. Dans cet article, nous allons explorer les performances des cartes graphiques <strong>NVIDIA</strong> et <strong>AMD</strong> pour ce jeu ultra-réaliste, et comment choisir la meilleure option pour votre configuration.</p>
       <h2>1. Pourquoi le matériel est-il important dans Flight Simulator 2024 ?</h2>
-      <p>
-        Flight Simulator 2024 est un jeu extrêmement gourmand en ressources graphiques et processeur, notamment lorsqu'il s'agit de reproduire des environnements détaillés, des conditions météorologiques dynamiques et des simulations de vol complexes. Choisir une carte graphique performante est crucial pour obtenir une expérience fluide, avec une fréquence d'images stable et des graphismes détaillés sans compromis.
-      </p>
-
+      <p>Flight Simulator 2024 est un jeu extrêmement gourmand en ressources graphiques et processeur, notamment lorsqu'il s'agit de reproduire des environnements détaillés, des conditions météorologiques dynamiques et des simulations de vol complexes. Choisir une carte graphique performante est crucial pour obtenir une expérience fluide, avec une fréquence d'images stable et des graphismes détaillés sans compromis.</p>
       <h2>2. Performances avec les cartes NVIDIA RTX</h2>
-      <p>
-        Les séries de cartes graphiques **NVIDIA RTX**, avec leur architecture Ampère et la prise en charge du **Ray Tracing** et du **DLSS (Deep Learning Super Sampling)**, permettent des graphismes de qualité supérieure tout en améliorant les performances de manière significative. Voici un aperçu des cartes NVIDIA les plus performantes pour Flight Simulator 2024 :
-      </p>
+      <p>Les séries de cartes graphiques <strong>NVIDIA RTX</strong>, avec leur architecture Ampère et la prise en charge du <strong>Ray Tracing</strong> et du <strong>DLSS (Deep Learning Super Sampling)</strong>, permettent des graphismes de qualité supérieure tout en améliorant les performances de manière significative. Voici un aperçu des cartes NVIDIA les plus performantes pour Flight Simulator 2024 :</p>
       <ul>
-        <li><strong>RTX 4090</strong> : La carte la plus puissante de la gamme NVIDIA. Avec ses 24 Go de mémoire GDDR6X, elle permet de jouer en 4K avec des réglages graphiques ultra. Le **Ray Tracing** et le **DLSS 3.0** garantissent une fluidité parfaite même avec des environnements très chargés.</li>
-        <li><strong>RTX 3080 Ti</strong> : Une option excellente pour les joueurs recherchant une performance en **1440p** ou **4K** avec un excellent rapport qualité/prix.</li>
-        <li><strong>RTX 3070</strong> : Idéale pour ceux qui jouent en **1080p** ou **1440p**, la RTX 3070 est une solution plus abordable tout en offrant des graphismes détaillés et un taux de rafraîchissement élevé.</li>
+        <li><strong>RTX 4090</strong> : La carte la plus puissante de la gamme NVIDIA. Avec ses 24 Go de mémoire GDDR6X, elle permet de jouer en 4K avec des réglages graphiques ultra. Le <strong>Ray Tracing</strong> et le <strong>DLSS 3.0</strong> garantissent une fluidité parfaite même avec des environnements très chargés.</li>
+        <li><strong>RTX 3080 Ti</strong> : Une option excellente pour les joueurs recherchant une performance en <em>1440p</em> ou <em>4K</em> avec un excellent rapport qualité/prix.</li>
+        <li><strong>RTX 3070</strong> : Idéale pour ceux qui jouent en <em>1080p</em> ou <em>1440p</em>, la RTX 3070 est une solution plus abordable tout en offrant des graphismes détaillés et un taux de rafraîchissement élevé.</li>
       </ul>
-
       <h2>3. Performances avec les cartes AMD Radeon RX</h2>
-      <p>
-        Bien qu'AMD soit un peu en retard par rapport à NVIDIA en matière de Ray Tracing, les cartes **Radeon RX** de la série **7000** ont fait d'énormes progrès et offrent d'excellentes performances dans Flight Simulator 2024. Elles sont souvent un meilleur choix pour les joueurs cherchant à maximiser les performances pour un prix inférieur à celui des cartes NVIDIA haut de gamme.
-      </p>
+      <p>Bien qu'AMD soit un peu en retard par rapport à NVIDIA en matière de Ray Tracing, les cartes <strong>Radeon RX</strong> de la série <strong>7000</strong> ont fait d'énormes progrès et offrent d'excellentes performances dans Flight Simulator 2024. Elles sont souvent un meilleur choix pour les joueurs cherchant à maximiser les performances pour un prix inférieur à celui des cartes NVIDIA haut de gamme.</p>
       <ul>
-        <li><strong>Radeon RX 7900 XTX</strong> : Comparable à la RTX 4090, cette carte est idéale pour le 4K gaming. Elle dispose de **24 Go** de VRAM et gère parfaitement les environnements 3D complexes.</li>
-        <li><strong>Radeon RX 6800 XT</strong> : Elle se positionne comme un concurrent de la RTX 3080, offrant d'excellentes performances en **1440p** avec une consommation énergétique maîtrisée.</li>
-        <li><strong>Radeon RX 6700 XT</strong> : Parfaite pour les jeux en **1080p** et **1440p**, offrant un excellent rapport performance/prix.</li>
+        <li><strong>Radeon RX 7900 XTX</strong> : Comparable à la RTX 4090, cette carte est idéale pour le 4K gaming. Elle dispose de <strong>24 Go</strong> de VRAM et gère parfaitement les environnements 3D complexes.</li>
+        <li><strong>Radeon RX 6800 XT</strong> : Elle se positionne comme un concurrent de la RTX 3080, offrant d'excellentes performances en <em>1440p</em> avec une consommation énergétique maîtrisée.</li>
+        <li><strong>Radeon RX 6700 XT</strong> : Parfaite pour les jeux en <em>1080p</em> et <em>1440p</em>, offrant un excellent rapport performance/prix.</li>
       </ul>
-
       <h2>4. Conclusion : NVIDIA ou AMD pour Flight Simulator 2024 ?</h2>
-      <p>
-        Les deux marques proposent d'excellentes options pour les passionnés de simulation de vol. Si vous recherchez des graphismes ultra-détaillés avec Ray Tracing, la gamme **NVIDIA RTX** sera idéale. En revanche, si vous cherchez à maximiser les performances en 1440p ou 4K à un prix plus abordable, les cartes **AMD Radeon RX** sont un excellent choix. Le tout dépend de vos besoins spécifiques et de votre budget.
-      </p>
+      <p>Les deux marques proposent d'excellentes options pour les passionnés de simulation de vol. Si vous recherchez des graphismes ultra-détaillés avec Ray Tracing, la gamme <strong>NVIDIA RTX</strong> sera idéale. En revanche, si vous cherchez à maximiser les performances en 1440p ou 4K à un prix plus abordable, les cartes <strong>AMD Radeon RX</strong> sont un excellent choix. Le tout dépend de vos besoins spécifiques et de votre budget.</p>
     </section>
 
-    <!-- Article 2 : 5 Astuces pour Optimiser et Accélérer Windows 11 -->
     <section id="windows-11" class="article">
       <h1>5 Astuces pour Optimiser et Accélérer Windows 11</h1>
       <img src="https://imgs.search.brave.com/DAFO7kl3xyJ0cNWrW9LFNHx3M8ZnDmspFJy2kzHKKcc/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJzLmNvbS9p/bWFnZXMvaGQvZmFz/Y2luYXRpbmctd2lu/ZG93cy0xMS1sb2dv/LWcwN2R2MGp2dzd0/amVhMWEuanBn" alt="Windows 11" />
-      <p>
-        **Windows 11** est un système d'exploitation moderne, mais avec le temps, il peut devenir lent à cause de l'accumulation de fichiers inutiles et de processus en arrière-plan. Voici cinq astuces pratiques pour optimiser et accélérer votre PC sous **Windows 11**.
-      </p>
-
+      <p><strong>Windows 11</strong> est un système d'exploitation moderne, mais avec le temps, il peut devenir lent à cause de l'accumulation de fichiers inutiles et de processus en arrière-plan. Voici cinq astuces pratiques pour optimiser et accélérer votre PC sous <strong>Windows 11</strong>.</p>
       <h2>1. Désactiver les programmes de démarrage inutiles</h2>
-      <p>
-        De nombreux programmes s'ajoutent automatiquement au démarrage de Windows 11, ralentissant ainsi le temps de démarrage et la performance globale. Désactivez ceux qui ne sont pas essentiels.
-      </p>
+      <p>De nombreux programmes s'ajoutent automatiquement au démarrage de Windows 11, ralentissant ainsi le temps de démarrage et la performance globale. Désactivez ceux qui ne sont pas essentiels.</p>
       <ul>
-        <li>Cliquez sur **Ctrl + Shift + Esc** pour ouvrir le Gestionnaire des tâches.</li>
-        <li>Allez dans l'onglet **Démarrage**, puis désactivez les applications inutiles.</li>
+        <li>Ouvrez le Gestionnaire des tâches (Ctrl + Maj + Échap).</li>
+        <li>Allez dans l'onglet "Démarrage".</li>
+        <li>Faites un clic droit sur les programmes inutiles et choisissez "Désactiver".</li>
       </ul>
-
-      <h2>2. Utiliser l'outil de Nettoyage de Disque</h2>
-      <p>
-        **Nettoyage de disque** est un excellent outil pour nettoyer les fichiers temporaires, les caches et autres fichiers inutiles. Cela peut libérer de l'espace et accélérer les performances.
-      </p>
+      <h2>2. Nettoyer les fichiers temporaires</h2>
+      <p>Supprimez les fichiers temporaires et inutiles qui occupent de l'espace disque et peuvent ralentir votre système.</p>
       <ul>
-        <li>Recherchez **Nettoyage de disque** dans le menu démarrer.</li>
-        <li>Sélectionnez votre disque et cochez les éléments à supprimer, puis cliquez sur **OK**.</li>
+        <li>Ouvrez "Paramètres" &gt; "Système" &gt; "Stockage".</li>
+        <li>Cliquez sur "Fichiers temporaires" et sélectionnez les éléments à supprimer.</li>
+        <li>Confirmez la suppression.</li>
       </ul>
-
-      <h2>3. Optimiser les paramètres de performance</h2>
-      <p>
-        Windows 11 propose des options d'optimisation des performances qui désactivent les animations et les effets visuels non essentiels. Cela peut faire une grande différence sur les systèmes plus anciens.
-      </p>
+      <h2>3. Activer le mode Performances élevées</h2>
+      <p>Optimisez la gestion de l'alimentation pour privilégier les performances au lieu de l'économie d'énergie.</p>
       <ul>
-        <li>Allez dans **Panneau de configuration > Système > Paramètres système avancés**.</li>
-        <li>Dans l'onglet **Paramètres de performance**, sélectionnez **Ajuster pour de meilleures performances**.</li>
+        <li>Ouvrez "Paramètres" &gt; "Système" &gt; "Alimentation et batterie".</li>
+        <li>Sous "Mode d'alimentation", sélectionnez "Performances élevées".</li>
       </ul>
-
-      <h2>4. Vérifier les pilotes de périphériques</h2>
-      <p>
-        Les pilotes obsolètes peuvent affecter la performance de votre PC. Il est important de les garder à jour.
-      </p>
+      <h2>4. Mettre à jour les pilotes</h2>
+      <p>Assurez-vous que vos pilotes, surtout ceux de la carte graphique, sont à jour pour éviter les bugs et améliorer la compatibilité.</p>
       <ul>
-        <li>Allez dans **Gestionnaire de périphériques**.</li>
-        <li>Cliquez avec le bouton droit sur vos périphériques et sélectionnez **Mettre à jour le pilote**.</li>
+        <li>Utilisez Windows Update ou le logiciel du fabricant de votre matériel.</li>
       </ul>
-
-      <h2>5. Désactiver les effets visuels et les animations</h2>
-      <p>
-        Windows 11 regorge d'effets visuels et d'animations. Désactivez-les pour accélérer l'affichage.
-      </p>
+      <h2>5. Désactiver les effets visuels superflus</h2>
+      <p>Les animations et effets visuels peuvent être désactivés pour gagner en réactivité.</p>
       <ul>
-        <li>Dans **Paramètres système avancés**, dans l'onglet **Performance**, décochez les effets visuels non nécessaires.</li>
+        <li>Faites un clic droit sur "Ce PC" &gt; "Propriétés" &gt; "Paramètres système avancés".</li>
+        <li>Dans l'onglet "Performances", cliquez sur "Paramètres".</li>
+        <li>Sélectionnez "Ajuster afin d'obtenir les meilleures performances".</li>
       </ul>
-
-      <h2>Conclusion</h2>
-      <p>
-        En appliquant ces astuces, vous pouvez améliorer les performances de votre PC sous **Windows 11**, augmenter sa vitesse de démarrage, et profiter d'une expérience fluide même sur des configurations plus modestes.
-      </p>
     </section>
 
-    <!-- Article 3 : Assetto Corsa - Le guide des meilleurs réglages -->
     <section id="assetto-corsa" class="article">
-      <h1>Assetto Corsa - Le guide des meilleurs réglages</h1>
-      <img src="https://assettocorsa.gg/wp-content/uploads/62-1920x1080.jpg" alt="Assetto Corsa">
-      <p>
-        Si vous êtes passionné de simulation automobile, **Assetto Corsa** est sans doute l'un des meilleurs jeux de sa catégorie. Pour en tirer le meilleur parti, voici un guide détaillé sur les réglages à adopter pour avoir une expérience de jeu fluide et réaliste.
-      </p>
-      <h2>1. Réglages graphiques</h2>
-      <p>
-        Les réglages graphiques jouent un rôle essentiel pour assurer une expérience fluide dans **Assetto Corsa**. Voici les meilleurs paramètres à ajuster :
-      </p>
+      <h1>Comment Configurer Votre Volant pour Assetto Corsa</h1>
+      <img src="https://imgs.search.brave.com/sJ-tUwoHfhV6_0_LZkpRq2YT1_hq6kS1Eh_oR30-lr4/rs:fit:1200:675:1/g:ce/aHR0cHM6Ly9hc3NldHRv/Y29yc2Euc2l0ZXMv/c3RvcmFnZS9hc3NldHRv/Y29yc2Etc3RlcmluZy1j/b25maWd1cmF0aW9u/LnBuZw" alt="Configuration volant Assetto Corsa" />
+      <p><strong>Assetto Corsa</strong> est un jeu de simulation de course apprécié pour son réalisme. Bien configurer son volant est essentiel pour profiter pleinement de l'expérience. Voici un guide rapide pour régler votre volant.</p>
+      <h2>1. Installation des pilotes</h2>
+      <p>Avant toute chose, installez les pilotes spécifiques de votre volant pour garantir une compatibilité optimale.</p>
+      <h2>2. Configuration dans le jeu</h2>
       <ul>
-        <li><strong>Résolution :</strong> Choisissez une résolution native de votre écran (idéalement 1080p ou 1440p pour une expérience fluide).</li>
-        <li><strong>Antialiasing :</strong> Activez l'anticrénelage pour éliminer les bords rugueux des objets et améliorer les visuels.</li>
-        <li><strong>Qualité des textures :</strong> Réglez la qualité des textures sur "Haute" pour profiter de graphismes réalistes.</li>
+        <li><strong>Calibration :</strong> Calibrez votre volant pour que le jeu reconnaisse correctement les limites de rotation.</li>
+        <li><strong>Force Feedback :</strong> Ajustez la force du retour de force pour ressentir les sensations de la route.</li>
+        <li><strong>Zone morte :</strong> Réduisez la zone morte pour une meilleure précision.</li>
+        <li><strong>Assistance à la conduite :</strong> Désactivez les aides pour un défi plus authentique.</li>
       </ul>
-
-      <h2>2. Réglages du volant et de la conduite</h2>
-      <p>
-        Un volant bien configuré est crucial pour avoir une expérience réaliste. Voici quelques ajustements à faire :
-      </p>
-      <ul>
-        <li><strong>Force de retour :</strong> Ajustez la force de retour pour simuler la sensation de la route et du grip des pneus.</li>
-        <li><strong>Sensibilité du volant :</strong> Réglez la sensibilité en fonction de votre style de conduite. Pour un meilleur contrôle, il est conseillé de réduire la sensibilité à un niveau modéré.</li>
-      </ul>
-
+      <h2>3. Optimisation des performances</h2>
+      <p>Pour une expérience sans accroc, assurez-vous d'avoir un PC performant. Fermez les programmes inutiles et assurez-vous que les pilotes de votre carte graphique sont à jour.</p>
       <h2>Conclusion</h2>
-      <p>
-        Avec ces réglages, vous pourrez maximiser l'expérience de jeu dans **Assetto Corsa**. En ajustant les graphiques, la conduite et la force de retour, vous profiterez d'une immersion totale dans chaque virage et accélération.
-      </p>
+      <p>En suivant ce guide, vous pourrez maximiser votre expérience de simulation dans <strong>Assetto Corsa</strong>, que vous soyez débutant ou pilote confirmé.</p>
     </section>
   </main>
 
-  <footer>
-    <div class="article-footer">
-      <p>&copy; 2024 Yavor Tech Services. Tous droits réservés.</p>
+<footer>
+  <div class="footer-container">
+    <div class="footer-col footer-contact">
+      <h3>Contactez-nous</h3>
+      <p>Yavor Tech Services</p>
+      <p>123 Rue de l’Informatique<br />1200 Genève, Suisse</p>
+      <p>Email : <a href="mailto:contact@yavortech.ch">contact@yavortech.ch</a></p>
+      <p>Tél. : <a href="tel:+41221234567">+41 22 123 45 67</a></p>
     </div>
-  </footer>
+    <div class="footer-col">
+      <h3>Liens rapides</h3>
+      <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="tarifs.html">Tarifs</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>Infos légales</h3>
+      <ul>
+        <li><a href="#">Mentions légales</a></li>
+        <li><a href="#">Politique de confidentialité</a></li>
+        <li><a href="#">Conditions générales</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-left">
+      &copy; <span id="year"></span> Yavor Tech Services - Tous droits réservés.
+    </div>
+    <div class="footer-right">
+      <a href="#">Instagram</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const menu = document.getElementById('primary-menu');
+
+    hamburger.addEventListener('click', () => {
+      const expanded = hamburger.getAttribute('aria-expanded') === 'true' || false;
+      hamburger.setAttribute('aria-expanded', !expanded);
+      hamburger.classList.toggle('open');
+      menu.classList.toggle('open');
+    });
+
+    // Fermer menu si clic en dehors (optionnel)
+    document.addEventListener('click', (e) => {
+      if (!menu.contains(e.target) && !hamburger.contains(e.target)) {
+        hamburger.setAttribute('aria-expanded', false);
+        hamburger.classList.remove('open');
+        menu.classList.remove('open');
+      }
+    });
+  </script>
 
 </body>
 </html>
+

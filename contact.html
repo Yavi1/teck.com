@@ -3,158 +3,174 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Informatique Suisse - Contact</title>
+  <title>Contact - Yavor Tech Services</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
   <style>
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body { font-family:'Montserrat', sans-serif; background:#f9fafb; color:#333; line-height:1.6; }
-    a { text-decoration:none; color:inherit; }
+    /* Reset & base */
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+    body, html {
+      height: 100%;
+      font-family: 'Montserrat', sans-serif;
+      background-color: #121212;
+      color: #eee;
+      overflow-x: hidden;
+    }
 
+    /* Header Nav */
     header {
-      position: fixed; top:0; width:100%;
-      background: rgba(255 255 255 / 0.9);
-      backdrop-filter: saturate(180%) blur(20px);
-      box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
+      position: fixed;
+      width: 100%;
+      top: 0; left: 0;
+      background: rgba(20, 20, 20, 0.85);
+      backdrop-filter: saturate(180%) blur(15px);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.8);
       z-index: 100;
     }
     nav {
-      max-width: 1100px; margin: 0 auto;
-      display:flex; justify-content: space-between; align-items:center;
+      max-width: 1100px;
+      margin: 0 auto;
       padding: 1rem 2rem;
-    }
-    nav .logo {
       display: flex;
+      justify-content: space-between;
       align-items: center;
     }
+    nav .logo svg {
+      height: 40px;
+      fill: #ffd600;
+    }
     nav ul {
-      list-style:none; display:flex; gap:2rem;
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
     }
     nav ul li a {
-      font-weight: 600; color:#333; padding:0.3rem 0.5rem;
+      color: #eee;
+      font-weight: 600;
+      padding-bottom: 2px;
       transition: color 0.3s ease;
     }
     nav ul li a:hover,
     nav ul li a.active {
-      color: #0055a5;
-      border-bottom: 2px solid #0055a5;
+      color: #ffd600;
+      border-bottom: 2px solid #ffd600;
     }
 
+    /* Main content container */
     main {
-      max-width: 700px;
-      margin: 120px auto 40px;
-      padding: 0 1rem;
       position: relative;
-    }
-    .form-wrapper {
-      position: relative;
-      background: white;
-      border-radius: 15px;
-      box-shadow: 0 3px 15px rgb(0 0 0 / 0.1);
-      padding: 2rem;
-      overflow: hidden;
       z-index: 1;
+      max-width: 1100px;
+      margin: 100px auto 3rem;
+      padding: 0 1.5rem;
+      display: flex;
+      gap: 3rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      color: #ddd;
     }
-    .form-wrapper::before {
+
+    main::before {
       content: "";
       position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background-image: url('montage-pc.png');
-      background-repeat: no-repeat;
-      background-position: center center;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('Images/montage-pc.png');
       background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
       opacity: 0.15;
       z-index: -1;
+      filter: brightness(0.7);
       border-radius: 15px;
-      filter: brightness(0.9);
     }
 
-    h1 {
-      color: #0055a5;
-      text-align: center;
-      margin-bottom: 1rem;
-      font-weight: 700;
-      font-size: 2.5rem;
-    }
-    p.subtitle {
-      text-align: center;
-      margin-bottom: 3rem;
-      color: #555;
-      font-size: 1.1rem;
-    }
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-    }
-    label {
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-      display: block;
-      color: #0055a5;
-    }
-    input[type="text"],
-    input[type="email"],
-    textarea {
-      width: 100%;
-      padding: 0.8rem 1rem;
-      border: 1.5px solid #ccc;
-      border-radius: 8px;
-      font-size: 1rem;
-      transition: border-color 0.3s ease;
-      font-family: 'Montserrat', sans-serif;
-      resize: vertical;
-    }
-    input[type="text"]:focus,
-    input[type="email"]:focus,
-    textarea:focus {
-      outline: none;
-      border-color: #0055a5;
-      box-shadow: 0 0 5px #0055a5aa;
-    }
-    textarea {
-      min-height: 120px;
-    }
-    button {
-      background-color: #0055a5;
-      color: white;
-      font-weight: 700;
-      font-size: 1.1rem;
-      padding: 15px;
-      border: none;
-      border-radius: 30px;
-      cursor: pointer;
-      box-shadow: 0 4px 15px rgb(0 85 165 / 0.4);
-      transition: background-color 0.3s ease;
-    }
-    button:hover {
-      background-color: #003f73;
-    }
-
+    /* Left contact info */
     .contact-info {
-      margin-top: 3rem;
-      text-align: center;
-      color: #555;
-      font-size: 1rem;
+      flex: 1 1 300px;
+      max-width: 400px;
+      background: rgba(30, 30, 30, 0.7);
+      padding: 2rem 2.5rem;
+      border-radius: 15px;
+      box-shadow: 0 0 20px #ffd600aa;
+    }
+    .contact-info h1 {
+      font-weight: 700;
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+      color: #ffd600;
+    }
+    .contact-info h2 {
+      font-weight: 500;
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      color: #fff;
+    }
+    .contact-info p {
+      font-size: 1.1rem;
       line-height: 1.5;
+      margin-bottom: 1rem;
     }
-    .contact-info strong {
-      color: #0055a5;
+    .contact-info p strong {
+      color: #ffd600;
     }
 
+    /* Right quick links */
+    .quick-links {
+      flex: 1 1 280px;
+      max-width: 350px;
+      background: rgba(30, 30, 30, 0.7);
+      padding: 2rem 2.5rem;
+      border-radius: 15px;
+      box-shadow: 0 0 20px #ffd600aa;
+    }
+    .quick-links h3 {
+      font-weight: 700;
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      color: #ffd600;
+    }
+    .quick-links ul {
+      list-style: none;
+    }
+    .quick-links ul li {
+      margin-bottom: 1rem;
+    }
+    .quick-links ul li a {
+      color: #ddd;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: color 0.3s ease;
+    }
+    .quick-links ul li a:hover {
+      color: #ffd600;
+      text-decoration: underline;
+    }
+
+    /* Footer */
     footer {
-      background: #003f73;
-      color: white;
-      padding: 1.5rem 2rem;
+      background-color: #000000dd;
+      color: #aaa;
       text-align: center;
+      padding: 1.5rem 1rem;
       font-size: 0.9rem;
+      border-top: 1px solid #222;
+      max-width: 1100px;
+      margin: 0 auto 2rem;
+      border-radius: 10px;
     }
 
-    @media (max-width: 480px) {
+    /* Responsive */
+    @media (max-width: 900px) {
       main {
-        margin: 100px 1rem 30px;
+        flex-direction: column;
+        margin: 120px 1rem 3rem 1rem;
       }
-      h1 {
-        font-size: 2rem;
+      .contact-info, .quick-links {
+        max-width: 100%;
+        flex: none;
       }
     }
   </style>
@@ -162,12 +178,14 @@
 <body>
   <header>
     <nav>
-      <a href="index.html" class="logo" aria-label="Yavor Tech Services - Accueil">
-        <svg width="260" height="40" viewBox="0 0 260 40" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Logo Yavor Tech Services">
-          <text x="0" y="28" font-family="Montserrat" font-size="24" font-weight="700" fill="#0055a5">Yavor</text>
-          <text x="65" y="28" font-family="Montserrat" font-size="20" font-weight="400" fill="#003f73">Tech Services</text>
-        </svg>
-      </a>
+      <div class="logo">
+        <a href="index.html" aria-label="Yavor Tech Services - Accueil">
+          <svg width="160" height="40" viewBox="0 0 260 40" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Logo Yavor Tech Services">
+            <text x="0" y="28" font-family="Montserrat" font-size="24" font-weight="700" fill="#ffd600">Yavor</text>
+            <text x="65" y="28" font-family="Montserrat" font-size="20" font-weight="400" fill="#fff">Tech Services</text>
+          </svg>
+        </a>
+      </div>
       <ul>
         <li><a href="index.html">Accueil</a></li>
         <li><a href="services.html">Services</a></li>
@@ -179,74 +197,36 @@
   </header>
 
   <main>
-    <h1>Contactez-nous</h1>
-    <p class="subtitle">Une question, un devis ou un conseil ? Envoyez-nous un message, nous vous répondrons rapidement.</p>
+    <section class="contact-info" aria-label="Informations de contact">
+      <h1>Contactez-nous</h1>
+      <h2>Yavor Tech Services</h2>
+      <p><strong>Adresse :</strong><br />123 Rue de l’Informatique<br />1200 Genève, Suisse</p>
+      <p><strong>Email :</strong><br /><a href="mailto:contact@yavortech.ch" style="color:#ffd600;">contact@yavortech.ch</a></p>
+      <p><strong>Tél. :</strong><br /><a href="tel:+41221234567" style="color:#ffd600;">+41 22 123 45 67</a></p>
+    </section>
 
-    <div class="form-wrapper">
-      <form id="contactForm" novalidate>
-        <label for="name">Nom complet *</label>
-        <input type="text" id="name" name="name" required placeholder="Votre nom complet" />
-
-        <label for="email">Email *</label>
-        <input type="email" id="email" name="email" required placeholder="exemple@domaine.com" />
-
-        <label for="subject">Sujet *</label>
-        <input type="text" id="subject" name="subject" required placeholder="Sujet de votre message" />
-
-        <label for="message">Message *</label>
-        <textarea id="message" name="message" required placeholder="Votre message ici..."></textarea>
-
-        <button type="submit">Envoyer</button>
-      </form>
-    </div>
-
-    <div class="contact-info" aria-live="polite" role="status" id="formStatus" style="display:none; margin-top:1.5rem; color:green; font-weight:700;">
-      Merci pour votre message, nous vous répondrons sous 24h !
-    </div>
+    <section class="quick-links" aria-label="Liens rapides">
+      <h3>Liens rapides</h3>
+      <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="tarifs.html">Tarifs</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="infos-legales.html">Infos légales</a></li>
+        <li><a href="mentions-legales.html">Mentions légales</a></li>
+        <li><a href="politique-confidentialite.html">Politique de confidentialité</a></li>
+        <li><a href="conditions-generales.html">Conditions générales</a></li>
+      </ul>
+    </section>
   </main>
 
   <footer>
-    <p>© 2025 Yavor Tech Services — Tous droits réservés</p>
+    © <span id="year"></span> Yavor Tech Services — Tous droits réservés
   </footer>
 
-  <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
   <script>
-    // Initialise EmailJS avec ton user ID
-    (function() {
-      emailjs.init("VOTRE_USER_ID"); // Remplace par ton user_id
-    })();
-
-    const form = document.getElementById('contactForm');
-    const status = document.getElementById('formStatus');
-
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-
-      if (!form.checkValidity()) {
-        form.reportValidity();
-        return;
-      }
-
-      // Affichage du message de confirmation
-      status.style.display = 'block';
-      form.reset();
-
-      // Envoi du message avec EmailJS
-      emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', form)
-        .then(function(response) {
-          console.log('SUCCESS', response);
-          status.textContent = "Merci pour votre message, nous vous répondrons sous 24h !";
-          setTimeout(() => {
-            status.style.display = 'none';
-          }, 5000);
-        }, function(error) {
-          console.log('FAILED', error);
-          status.textContent = "Désolé, il y a eu un problème lors de l'envoi de votre message.";
-          setTimeout(() => {
-            status.style.display = 'none';
-          }, 5000);
-        });
-    });
+    document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
