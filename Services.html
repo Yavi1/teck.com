@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Informatique Suisse - Accueil</title>
+  <title>Services - Yavor Tech Services</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -11,9 +11,7 @@
     a { text-decoration: none; color: inherit; }
 
     header {
-      position: fixed;
-      top: 0;
-      width: 100%;
+      position: fixed; top: 0; width: 100%;
       background: rgba(255, 255, 255, 0.9);
       backdrop-filter: saturate(180%) blur(20px);
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -52,38 +50,6 @@
       border-bottom: 2px solid #0055a5;
     }
 
-    /* Menu déroulant */
-    nav ul li ul {
-      display: none;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      background-color: #fff;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      padding: 0.5rem 0;
-      min-width: 150px;
-    }
-
-    nav ul li:hover > ul {
-      display: block;
-    }
-
-    nav ul li ul li {
-      padding: 0.8rem 1rem;
-    }
-
-    nav ul li ul li a {
-      color: #333;
-      font-weight: 400;
-      padding: 0.3rem 0.5rem;
-      display: block;
-    }
-
-    nav ul li ul li a:hover {
-      background-color: #0055a5;
-      color: white;
-    }
-
     .menu-toggle {
       display: none;
       flex-direction: column;
@@ -98,116 +64,64 @@
       transition: 0.3s;
     }
 
-    .hero {
-      background: url('Images/bureau.png') no-repeat center center/cover;
-      height: 90vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0 2rem;
-      color: white;
-      text-align: center;
-      flex-direction: column;
-      gap: 1rem;
-      margin-top: 70px;
-    }
-
-    .hero h1 {
-      font-size: 3rem;
-      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
-    }
-
-    .hero p {
-      font-size: 1.3rem;
-      max-width: 700px;
-      text-shadow: 0 1px 5px rgba(0, 0, 0, 0.6);
-    }
-
-    .btn-primary {
-      background-color: #0055a5;
-      color: white;
-      padding: 15px 40px;
-      border-radius: 30px;
-      font-weight: 700;
-      font-size: 1.1rem;
-      box-shadow: 0 4px 15px rgba(0, 85, 165, 0.4);
-      transition: background-color 0.3s ease;
-      margin-top: 20px;
-    }
-
-    .btn-primary:hover {
-      background-color: #003f73;
-    }
-
-    section {
+    main {
       max-width: 1100px;
-      margin: 4rem auto;
+      margin: 100px auto 3rem auto;
       padding: 0 2rem;
-    }
-
-    h2 {
-      font-weight: 700;
-      font-size: 2.2rem;
-      margin-bottom: 2rem;
-      color: #0055a5;
       text-align: center;
     }
 
-    .presentation {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .presentation .text,
-    .presentation .image {
-      flex: 1;
-      min-width: 280px;
-      max-width: 500px;
-    }
-
-    .presentation .text p {
-      font-size: 1.1rem;
-      color: #444;
+    h1 {
+      font-weight: 700;
+      font-size: 3rem;
       margin-bottom: 1rem;
-      text-align: justify;
+      color: #0055a5;
     }
 
-    .presentation .image img {
-      width: 100%;
-      border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-      display: block;
-      margin: 0 auto;
+    p.description {
+      max-width: 700px;
+      margin: 0 auto 3rem auto;
+      font-size: 1.3rem;
+      color: #555;
     }
 
-    .services {
+    .services-list {
       display: flex;
       gap: 2rem;
       flex-wrap: wrap;
       justify-content: center;
     }
 
-    .service-card {
+    .service-item {
       background: white;
       padding: 2rem;
       border-radius: 15px;
       box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
-      width: 300px;
+      width: 320px;
       text-align: center;
-      transition: transform 0.3s ease;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 1rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: block;
+      cursor: pointer;
     }
 
-    .service-card:hover {
+    .service-item:hover {
       transform: translateY(-10px);
       box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .service-item .icon {
+      font-size: 2.5rem;
+      margin-bottom: 0.7rem;
+    }
+
+    .service-item h2 {
+      color: #0055a5;
+      margin-bottom: 1rem;
+    }
+
+    .service-item p {
+      font-size: 1rem;
+      color: #555;
     }
 
     footer {
@@ -301,6 +215,20 @@
       .menu-toggle {
         display: flex;
       }
+
+      .services-list {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .footer-container {
+        flex-direction: column;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        align-items: center;
+      }
     }
   </style>
 </head>
@@ -312,14 +240,8 @@
       <a href="index.html"><img src="Images/YavorTechServices.svg" alt="Yavor Tech Services Logo" /></a>
     </div>
     <ul id="nav-links">
-      <li><a href="index.html" class="active">Accueil</a></li>
-      <li><a href="services.html">Services</a>
-        <ul class="dropdown">
-          <li><a href="services.html#maintenance">Maintenance</a></li>
-          <li><a href="services.html#depannage">Dépannage</a></li>
-          <li><a href="services.html#solutions">Solutions</a></li>
-        </ul>
-      </li>
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="services.html" class="active">Services</a></li>
       <li><a href="tarifs.html">Tarifs</a></li>
       <li><a href="blog.html">Blog</a></li>
       <li><a href="contact.html">Contact</a></li>
@@ -330,40 +252,37 @@
   </nav>
 </header>
 
-<section class="hero">
-  <h1>Votre expert informatique en Suisse</h1>
-  <p>Maintenance informatique, dépannage, et solutions sur mesure pour particuliers et professionnels.</p>
-  <a href="contact.html" class="btn-primary">Contactez-nous</a>
-</section>
-
-<section class="presentation">
-  <div class="text">
-    <h2>Qui sommes-nous ?</h2>
-    <p>Yavor Tech Services est votre partenaire de confiance en informatique, basé à Genève. Nous offrons une gamme complète de services allant de la maintenance de vos équipements à l'installation de réseaux sécurisés.</p>
-    <p>Notre équipe qualifiée est disponible 7j/7 pour répondre à vos besoins et assurer la pérennité de vos systèmes informatiques.</p>
-  </div>
-  <div class="image">
-    <img src="Images/bureau.png" alt="Bureau informatique moderne" />
-  </div>
-</section>
-
-<section>
-  <h2>Nos services principaux</h2>
-  <div class="services">
-    <a href="services.html#maintenance" class="service-card">
-      <h3>Maintenance 🛠️</h3>
-      <p>Entretien et optimisation régulière pour garder vos systèmes performants.</p>
+<main>
+  <h1>Nos Services</h1>
+  <p class="description">Maintenance informatique, dépannage, et solutions sur mesure pour particuliers et professionnels.</p>
+  <div class="services-list">
+    <a href="contact.html" class="service-item" aria-label="Contacter pour Dépannage informatique">
+      <div class="icon">🛠️</div>
+      <h2>Dépannage informatique</h2>
+      <p>Réparation rapide et fiable pour PC, intervention à domicile ou à distance.</p>
     </a>
-    <a href="services.html#depannage" class="service-card">
-      <h3>Dépannage ⚡</h3>
-      <p>Interventions rapides pour résoudre vos problèmes techniques urgents.</p>
+    <a href="contact.html" class="service-item" aria-label="Contacter pour Maintenance & Assistance">
+      <div class="icon">🔧</div>
+      <h2>Maintenance & Assistance</h2>
+      <p>Entretien préventif, optimisation système, et support technique personnalisé.</p>
     </a>
-    <a href="services.html#solutions" class="service-card">
-      <h3>Solutions 💡</h3>
-      <p>Conception et installation de solutions adaptées à vos besoins.</p>
+    <a href="contact.html" class="service-item" aria-label="Contacter pour Sauvegarde de données">
+      <div class="icon">💾</div>
+      <h2>Sauvegarde de données</h2>
+      <p>Mise en place de solutions sécurisées pour protéger vos fichiers importants.</p>
+    </a>
+    <a href="contact.html" class="service-item" aria-label="Contacter pour Conseil & Formation">
+      <div class="icon">📘</div>
+      <h2>Conseil & Formation</h2>
+      <p>Accompagnement et formation pour mieux utiliser vos outils informatiques.</p>
+    </a>
+    <a href="contact.html" class="service-item" aria-label="Contacter pour Montage PC sur mesure">
+      <div class="icon">🖥️</div>
+      <h2>Montage PC sur mesure</h2>
+      <p>Configuration personnalisée, assemblage professionnel et tests complets pour un PC adapté à vos besoins.</p>
     </a>
   </div>
-</section>
+</main>
 
 <footer>
   <div class="footer-container">
@@ -406,13 +325,12 @@
 <script>
   document.getElementById("year").textContent = new Date().getFullYear();
 
-  const mobileMenu = document.getElementById('mobile-menu');
-  const navLinks = document.getElementById('nav-links');
+  const mobileMenu = document.getElementById("mobile-menu");
+  const navLinks = document.getElementById("nav-links");
 
-  mobileMenu.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
+  mobileMenu.addEventListener("click", () => {
+    navLinks.classList.toggle("active");
   });
 </script>
-
 </body>
 </html>
