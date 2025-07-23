@@ -24,6 +24,7 @@
       justify-content: space-between;
       align-items: center;
       padding: 1rem 2rem;
+      position: relative;
     }
     nav .logo img {
       height: 50px;
@@ -43,6 +44,21 @@
     nav ul li a.active {
       color: #0055a5;
       border-bottom: 2px solid #0055a5;
+    }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      width: 25px;
+      height: 20px;
+      justify-content: space-between;
+    }
+    .hamburger div {
+      height: 3px;
+      background-color: #333;
+      border-radius: 2px;
     }
 
     main {
@@ -171,17 +187,41 @@
       margin-left: 15px;
     }
 
+    /* Responsive */
     @media (max-width: 768px) {
-      .services-list {
+      nav ul {
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background: rgba(255,255,255,0.95);
         flex-direction: column;
-        align-items: center;
+        gap: 0;
+        display: none;
+        padding: 1rem 2rem;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
       }
-      .footer-container {
-        flex-direction: column;
+      nav ul.show {
+        display: flex;
       }
-      .footer-bottom {
-        flex-direction: column;
-        align-items: center;
+      nav ul li {
+        margin: 0.5rem 0;
+      }
+      nav ul li a {
+        padding: 0.5rem 0;
+        border-bottom: none;
+      }
+      .hamburger {
+        display: flex;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 2rem;
+      }
+      .service-item {
+        width: 90%;
       }
     }
   </style>
@@ -192,7 +232,12 @@
     <div class="logo">
       <a href="index.html"><img src="Images/YavorTechServices.svg" alt="Yavor Tech Services Logo" /></a>
     </div>
-    <ul>
+    <div class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false" role="button" tabindex="0">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <ul id="nav-menu">
       <li><a href="index.html">Accueil</a></li>
       <li><a href="services.html" class="active">Services</a></li>
       <li><a href="tarifs.html">Tarifs</a></li>
@@ -273,7 +318,27 @@
 </footer>
 
 <script>
+  const hamburger = document.getElementById('hamburger');
+  const navMenu = document.getElementById('nav-menu');
+
+  hamburger.addEventListener('click', () => {
+    const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
+    hamburger.setAttribute('aria-expanded', !isExpanded);
+    navMenu.classList.toggle('show');
+  });
+
+  // Accessibilité : toggle menu aussi avec Enter key
+  hamburger.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      hamburger.click();
+    }
+  });
+
+  // Ajout de l'année dans le footer
   document.getElementById("year").textContent = new Date().getFullYear();
 </script>
 </body>
 </html>
+
+
