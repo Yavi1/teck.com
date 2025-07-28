@@ -11,32 +11,80 @@
     a { text-decoration:none; color:inherit; }
 
     header {
-      position: fixed; top:0; width:100%;
-      background: rgba(255 255 255 / 0.9);
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.9);
       backdrop-filter: saturate(180%) blur(20px);
-      box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
       z-index: 100;
     }
+
     nav {
-      max-width: 1100px; margin: 0 auto;
-      display:flex; justify-content: space-between; align-items:center;
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       padding: 1rem 2rem;
     }
-    nav .logo {
-      display: flex;
-      align-items: center;
+
+    nav .logo img {
+      height: 50px;
     }
+
     nav ul {
-      list-style:none; display:flex; gap:2rem;
+      list-style: none;
+      display: flex;
+      gap: 2rem;
     }
+
     nav ul li a {
-      font-weight: 600; color:#333; padding:0.3rem 0.5rem;
+      font-weight: 600;
+      color: #333;
+      padding: 0.3rem 0.5rem;
       transition: color 0.3s ease;
     }
+
     nav ul li a:hover,
     nav ul li a.active {
       color: #0055a5;
       border-bottom: 2px solid #0055a5;
+    }
+
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .menu-toggle span {
+      height: 3px;
+      width: 25px;
+      background: #333;
+      margin: 4px 0;
+      transition: 0.3s;
+    }
+
+    @media (max-width: 768px) {
+      nav ul {
+        display: none;
+        flex-direction: column;
+        background: white;
+        position: absolute;
+        top: 70px;
+        right: 0;
+        width: 200px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      }
+
+      nav ul.active {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
     }
 
     section {
@@ -45,12 +93,14 @@
       padding: 0 2rem;
       text-align: center;
     }
+
     h2 {
       font-weight: 700;
       font-size: 2.2rem;
       margin-bottom: 0.5rem;
       color: #0055a5;
     }
+
     .subtitle {
       color: #555;
       font-size: 1rem;
@@ -61,13 +111,11 @@
       margin-right: auto;
     }
 
-    /* Tableau tarifaire */
     .pricing-table {
       width: 100%;
       max-width: 900px;
       margin: 2rem auto;
       border-collapse: collapse;
-      font-family: 'Montserrat', sans-serif;
       background: white;
       box-shadow: 0 3px 15px rgb(0 0 0 / 0.1);
       border-radius: 15px;
@@ -96,7 +144,6 @@
       border-bottom: none;
     }
 
-    /* Responsive tableau */
     @media (max-width: 768px) {
       .pricing-table,
       .pricing-table thead,
@@ -107,9 +154,11 @@
         display: block;
         width: 100%;
       }
+
       .pricing-table thead tr {
         display: none;
       }
+
       .pricing-table tbody tr {
         margin-bottom: 1.5rem;
         background: white;
@@ -117,6 +166,7 @@
         border-radius: 15px;
         padding: 1rem;
       }
+
       .pricing-table tbody td {
         padding-left: 50%;
         position: relative;
@@ -126,9 +176,11 @@
         font-weight: 600;
         color: #0055a5;
       }
+
       .pricing-table tbody td:last-child {
         border-bottom: none;
       }
+
       .pricing-table tbody td::before {
         content: attr(data-label);
         position: absolute;
@@ -139,9 +191,18 @@
         white-space: nowrap;
         text-align: left;
       }
+
+      .footer-container {
+        flex-direction: column;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        align-items: center;
+      }
     }
 
-    /* Footer styles from index.html */
+    /* Footer styles identiques */
     footer {
       background: #111;
       color: #eee;
@@ -213,139 +274,106 @@
       color: #aaa;
       margin-left: 15px;
     }
-
-    @media (max-width: 768px) {
-      .footer-container {
-        flex-direction: column;
-      }
-      .footer-bottom {
-        flex-direction: column;
-        align-items: center;
-      }
-    }
   </style>
 </head>
 <body>
-  <header>
-    <nav>
-      <a href="index.html" class="logo" aria-label="Yavor Tech Services - Accueil">
-        <svg width="260" height="40" viewBox="0 0 260 40" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Logo Yavor Tech Services">
-          <text x="0" y="28" font-family="Montserrat" font-size="24" font-weight="700" fill="#0055a5">Yavor</text>
-          <text x="65" y="28" font-family="Montserrat" font-size="20" font-weight="400" fill="#003f73">Tech Services</text>
-        </svg>
-      </a>
+
+<header>
+  <nav>
+    <div class="logo">
+      <a href="index.html"><img src="Images/YavorTechServices.svg" alt="Yavor Tech Services Logo" /></a>
+    </div>
+    <ul id="nav-links">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="tarifs.html" class="active">Tarifs</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="menu-toggle" id="mobile-menu">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+</header>
+
+<section>
+  <h2>Nos Tarifs</h2>
+  <p class="subtitle">Des prestations claires, justes et adaptées à vos besoins.</p>
+
+  <table class="pricing-table" role="table" aria-label="Tableau des tarifs de Yavor Tech Services">
+    <thead>
+      <tr>
+        <th scope="col">Service</th>
+        <th scope="col">Particuliers (CHF)</th>
+        <th scope="col">Entreprises (CHF)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- TARIFS identiques à ton code original -->
+      <tr><td data-label="Service">Dépannage informatique (sur site)</td><td data-label="Particuliers">100.– / heure (1ère heure)</td><td data-label="Entreprises">130.– / heure</td></tr>
+      <tr><td data-label="Service">Dépannage informatique (à distance)</td><td data-label="Particuliers">40.– / heure</td><td data-label="Entreprises">65.– / heure</td></tr>
+      <tr><td data-label="Service">Assistance technique (par téléphone)</td><td data-label="Particuliers">40.– / heure</td><td data-label="Entreprises">65.– / heure</td></tr>
+      <tr><td data-label="Service">Installation Windows & logiciels</td><td data-label="Particuliers">200.– forfait</td><td data-label="Entreprises">200.– forfait</td></tr>
+      <tr><td data-label="Service">Nettoyage & optimisation PC</td><td data-label="Particuliers">160.– forfait</td><td data-label="Entreprises">160.– forfait</td></tr>
+      <tr><td data-label="Service">Récupération de données</td><td data-label="Particuliers">À partir de 120.–</td><td data-label="Entreprises">À partir de 120.–</td></tr>
+      <tr><td data-label="Service">Installation matériel (box, imprimante, etc.)</td><td data-label="Particuliers">60.– / heure</td><td data-label="Entreprises">90.– / heure</td></tr>
+      <tr><td data-label="Service">Conseil & formation informatique</td><td data-label="Particuliers">90.– / heure</td><td data-label="Entreprises">120.– / heure</td></tr>
+      <tr><td data-label="Service">Montage PC sur mesure</td><td data-label="Particuliers">120.– forfait</td><td data-label="Entreprises">120.– forfait</td></tr>
+      <tr><td data-label="Service">Abonnement annuel (12 heures)</td><td data-label="Particuliers">500.– forfait</td><td data-label="Entreprises">500.– forfait</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<footer>
+  <div class="footer-container">
+    <div class="footer-col footer-contact">
+      <h3>Contactez-nous</h3>
+      <p>Yavor Tech Services</p>
+      <p>123 Rue de l’Informatique<br />1200 Genève, Suisse</p>
+      <p>Email : <a href="mailto:contact@yavortech.ch">contact@yavortech.ch</a></p>
+      <p>Tél. : <a href="tel:+41221234567">+41 22 123 45 67</a></p>
+    </div>
+    <div class="footer-col">
+      <h3>Liens rapides</h3>
       <ul>
         <li><a href="index.html">Accueil</a></li>
         <li><a href="services.html">Services</a></li>
-        <li><a href="tarifs.html" class="active">Tarifs</a></li>
+        <li><a href="tarifs.html">Tarifs</a></li>
         <li><a href="blog.html">Blog</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
-    </nav>
-  </header>
-
-  <section>
-    <h2>Nos Tarifs</h2>
-    <p class="subtitle">Des prestations claires, justes et adaptées à vos besoins.</p>
-
-    <table class="pricing-table" role="table" aria-label="Tableau des tarifs de Yavor Tech Services">
-      <thead>
-        <tr>
-          <th scope="col">Service</th>
-          <th scope="col">Particuliers (CHF)</th>
-          <th scope="col">Entreprises (CHF)</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td data-label="Service">Dépannage informatique (sur site)</td>
-          <td data-label="Particuliers">100.– / heure (1ère heure)</td>
-          <td data-label="Entreprises">130.– / heure</td>
-        </tr>
-        <tr>
-          <td data-label="Service">Dépannage informatique (à distance)</td>
-          <td data-label="Particuliers">40.– / heure</td>
-          <td data-label="Entreprises">65.– / heure</td>
-        </tr>
-        <tr>
-          <td data-label="Service">Assistance technique (par téléphone)</td>
-          <td data-label="Particuliers">40.– / heure</td>
-          <td data-label="Entreprises">65.– / heure</td>
-        </tr>
-        <tr>
-          <td data-label="Service">Installation Windows & logiciels</td>
-          <td data-label="Particuliers">200.– forfait</td>
-          <td data-label="Entreprises">200.– forfait</td>
-        </tr>
-        <tr>
-          <td data-label="Service">Nettoyage & optimisation PC</td>
-          <td data-label="Particuliers">160.– forfait</td>
-          <td data-label="Entreprises">160.– forfait</td>
-        </tr>
-        <tr>
-          <td data-label="Service">Récupération de données</td>
-          <td data-label="Particuliers">À partir de 120.–</td>
-          <td data-label="Entreprises">À partir de 120.–</td>
-        </tr>
-        <tr>
-          <td data-label="Service">Installation matériel (box, imprimante, etc.)</td>
-          <td data-label="Particuliers">60.– / heure</td>
-          <td data-label="Entreprises">90.– / heure</td>
-        </tr>
-        <tr>
-          <td data-label="Service">Conseil & formation informatique</td>
-          <td data-label="Particuliers">90.– / heure</td>
-          <td data-label="Entreprises">120.– / heure</td>
-        </tr>
-        <tr>
-          <td data-label="Service">Montage PC sur mesure</td>
-          <td data-label="Particuliers">120.– forfait</td>
-          <td data-label="Entreprises">120.– forfait</td>
-        </tr>
-        <tr>
-          <td data-label="Service">Abonnement annuel (12 heures)</td>
-          <td data-label="Particuliers">500.– forfait</td>
-          <td data-label="Entreprises">500.– forfait</td>
-        </tr>
-      </tbody>
-    </table>
-  </section>
-
-  <footer>
-    <div class="footer-container">
-      <div class="footer-col footer-about">
-        <h3>À propos</h3>
-        <p>Yavor Tech Services fournit des solutions informatiques personnalisées en Suisse Romande depuis 2010.</p>
-      </div>
-      <div class="footer-col footer-links">
-        <h3>Liens rapides</h3>
-        <ul>
-          <li><a href="index.html">Accueil</a></li>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="tarifs.html">Tarifs</a></li>
-          <li><a href="blog.html">Blog</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </div>
-      <div class="footer-col footer-contact">
-        <h3>Contact</h3>
-        <ul>
-          <li>Téléphone: <a href="tel:+41234567890">+41 23 456 78 90</a></li>
-          <li>Email: <a href="mailto:contact@yavortech.ch">contact@yavortech.ch</a></li>
-          <li>Adresse: Rue de l'Informatique 12, 1000 Lausanne</li>
-        </ul>
-      </div>
     </div>
-    <div class="footer-bottom">
-      <div class="footer-left">© 2025 Yavor Tech Services — Tous droits réservés</div>
-      <div class="footer-right">
-        <a href="https://www.facebook.com/yavortech" aria-label="Facebook" target="_blank" rel="noopener noreferrer">Facebook</a>
-        <a href="https://www.twitter.com/yavortech" aria-label="Twitter" target="_blank" rel="noopener noreferrer">Twitter</a>
-        <a href="https://www.linkedin.com/company/yavortech" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-      </div>
+    <div class="footer-col">
+      <h3>Infos légales</h3>
+      <ul>
+        <li><a href="#">Mentions légales</a></li>
+        <li><a href="#">Politique de confidentialité</a></li>
+        <li><a href="#">Conditions générales</a></li>
+      </ul>
     </div>
-  </footer>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-left">
+      &copy; <span id="year"></span> Yavor Tech Services - Tous droits réservés.
+    </div>
+    <div class="footer-right">
+      <a href="#">Instagram</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Année dynamique pour le footer
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  // Script menu responsive
+  const mobileMenu = document.getElementById('mobile-menu');
+  const navLinks = document.getElementById('nav-links');
+
+  mobileMenu.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+  });
+</script>
+
 </body>
 </html>
-
-
