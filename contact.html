@@ -3,30 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Contact - Yavor Tech Services</title>
+  <title>Contact - Informatique Suisse</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
   <style>
-    /* Reset et styles communs identiques */
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'Montserrat', sans-serif;
-      background: #f9fafb;
-      color: #333;
-      line-height: 1.6;
-    }
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
+    body { font-family: 'Montserrat', sans-serif; background: #f9fafb; color: #333; line-height: 1.6; }
+    a { text-decoration: none; color: inherit; }
 
-    /* Header identique */
     header {
-      position: fixed; top: 0; width: 100%;
-      background: rgba(255 255 255 / 0.9);
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.9);
       backdrop-filter: saturate(180%) blur(20px);
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
       z-index: 100;
     }
+
     nav {
       max-width: 1100px;
       margin: 0 auto;
@@ -35,140 +28,154 @@
       align-items: center;
       padding: 1rem 2rem;
     }
-    nav .logo img, nav .logo svg {
+
+    nav .logo img {
       height: 50px;
     }
+
     nav ul {
       list-style: none;
       display: flex;
       gap: 2rem;
     }
+
     nav ul li a {
       font-weight: 600;
       color: #333;
       padding: 0.3rem 0.5rem;
       transition: color 0.3s ease;
     }
+
     nav ul li a:hover,
     nav ul li a.active {
       color: #0055a5;
       border-bottom: 2px solid #0055a5;
     }
 
-    /* Bouton hamburger caché par défaut */
     .menu-toggle {
       display: none;
-      background: none;
-      border: none;
-      font-size: 2rem;
+      flex-direction: column;
       cursor: pointer;
-      color: #0055a5;
     }
 
-    /* Main : largeur max et centrage identique */
-    main {
+    .menu-toggle span {
+      height: 3px;
+      width: 25px;
+      background: #333;
+      margin: 4px 0;
+      transition: 0.3s;
+    }
+
+    @media (max-width: 768px) {
+      nav ul {
+        display: none;
+        flex-direction: column;
+        background: white;
+        position: absolute;
+        top: 70px;
+        right: 0;
+        width: 200px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      }
+
+      nav ul.active {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+    }
+
+    /* Wrapper général pour contact */
+    .wrapper {
       max-width: 1100px;
-      margin: 100px auto 3rem auto;
+      margin: 100px auto 50px auto; /* décaler sous header */
       padding: 0 2rem;
-      text-align: center;
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: flex-start;
     }
 
-    h1 {
-      font-weight: 700;
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      color: #0055a5;
-    }
-    p.subtitle {
-      max-width: 700px;
-      margin: 0 auto 3rem auto;
-      font-size: 1.3rem;
-      color: #555;
-    }
-
-    /* Formulaire avec fond blanc, arrondi et ombre */
-    .form-wrapper {
-      max-width: 600px;
-      margin: 0 auto;
+    /* Formulaire */
+    .contact-form {
+      flex: 1 1 400px;
       background: white;
-      border-radius: 15px;
-      box-shadow: 0 3px 15px rgba(0,0,0,0.1);
       padding: 2rem;
-      position: relative;
-      overflow: hidden;
-    }
-    .form-wrapper::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background-image: url('Images/montage-pc.png');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      opacity: 0.15;
-      z-index: -1;
-      border-radius: 15px;
-    }
-
-    form {
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
       display: flex;
       flex-direction: column;
-      gap: 1.5rem;
-      text-align: left;
+      gap: 1rem;
     }
-    label {
-      font-weight: 600;
+
+    .contact-form h2 {
       color: #0055a5;
-      display: block;
-      margin-bottom: 0.5rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+      font-size: 1.8rem;
     }
-    input[type="text"],
-    input[type="email"],
-    textarea {
-      width: 100%;
-      padding: 0.8rem 1rem;
-      border: 1.5px solid #ccc;
-      border-radius: 8px;
+
+    .contact-form label {
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+      color: #333;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      padding: 0.7rem 1rem;
       font-size: 1rem;
-      font-family: 'Montserrat', sans-serif;
-      transition: border-color 0.3s ease;
+      border: 1px solid #ccc;
+      border-radius: 8px;
       resize: vertical;
+      font-family: 'Montserrat', sans-serif;
     }
-    input[type="text"]:focus,
-    input[type="email"]:focus,
-    textarea:focus {
-      outline: none;
-      border-color: #0055a5;
-      box-shadow: 0 0 5px #0055a5aa;
-    }
-    textarea {
+
+    .contact-form textarea {
       min-height: 120px;
     }
-    button {
+
+    .contact-form button {
+      margin-top: 1rem;
       background-color: #0055a5;
       color: white;
-      font-weight: 700;
-      font-size: 1.1rem;
-      padding: 15px;
+      padding: 15px 30px;
       border: none;
       border-radius: 30px;
+      font-weight: 700;
+      font-size: 1.1rem;
       cursor: pointer;
       box-shadow: 0 4px 15px rgba(0, 85, 165, 0.4);
       transition: background-color 0.3s ease;
+      align-self: flex-start;
     }
-    button:hover {
+
+    .contact-form button:hover {
       background-color: #003f73;
     }
 
-    /* Message de succès / erreur */
-    #formStatus {
-      margin-top: 1.5rem;
-      color: green;
-      font-weight: 700;
-      display: none;
+    /* Image à droite */
+    .contact-image {
+      flex: 1 1 450px;
+      max-width: 500px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
-    /* Footer identique à services */
+    .contact-image img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 12px;
+    }
+
     footer {
       background: #111;
       color: #eee;
@@ -178,16 +185,20 @@
       max-width: 1100px;
       margin: 2rem auto 4rem auto;
     }
+
     .footer-container {
       display: flex;
       flex-wrap: wrap;
       gap: 2rem;
       justify-content: space-between;
+      margin-bottom: 2rem;
     }
+
     .footer-col {
       flex: 1 1 200px;
       min-width: 180px;
     }
+
     .footer-col h3 {
       margin-bottom: 1rem;
       font-weight: 700;
@@ -196,26 +207,28 @@
       border-bottom: 2px solid #444;
       padding-bottom: 0.3rem;
     }
+
     .footer-col ul {
       list-style: none;
       padding: 0;
     }
+
     .footer-col ul li {
       margin-bottom: 0.6rem;
     }
+
     .footer-col ul li a {
       color: #ccc;
-      transition: color 0.3s ease;
     }
+
     .footer-col ul li a:hover {
       color: #ffd600;
     }
-    .footer-col p, .footer-col a {
-      color: #ccc;
-    }
+
     .footer-contact a {
       color: #ccc;
     }
+
     .footer-bottom {
       border-top: 1px solid #333;
       padding-top: 1rem;
@@ -225,65 +238,31 @@
       gap: 10px;
       font-size: 0.85rem;
     }
+
     .footer-left {
       color: #aaa;
     }
+
     .footer-right a {
       color: #aaa;
       margin-left: 15px;
-      transition: color 0.3s ease;
-    }
-    .footer-right a:hover {
-      color: #ffd600;
     }
 
-    /* Responsive identique */
-    @media (max-width: 768px) {
-      main {
-        margin: 100px 1rem 3rem 1rem;
-      }
-      .footer-container {
+    /* Responsive */
+    @media (max-width: 900px) {
+      .wrapper {
         flex-direction: column;
-      }
-      .footer-bottom {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
+        margin-top: 90px;
       }
 
-      /* Affichage du bouton hamburger */
-      .menu-toggle {
-        display: block;
+      .contact-form,
+      .contact-image {
+        flex: 1 1 100%;
+        max-width: 100%;
       }
-      /* Menu caché par défaut en mobile */
-      nav ul {
-        display: none;
-        flex-direction: column;
-        gap: 1rem;
-        background: rgba(255 255 255 / 0.95);
-        position: fixed;
-        top: 70px;
-        right: 0;
-        width: 200px;
-        padding: 1rem 2rem;
-        box-shadow: -2px 0 8px rgba(0,0,0,0.1);
-        border-radius: 0 0 0 10px;
-        z-index: 150;
-        height: calc(100vh - 70px);
-        overflow-y: auto;
-      }
-      /* Quand menu ouvert */
-      nav ul.show {
-        display: flex;
-      }
-    }
-    @media (max-width: 480px) {
-      h1 {
-        font-size: 2.2rem;
-      }
-      button {
-        font-size: 1rem;
-        padding: 12px;
+
+      .contact-form button {
+        align-self: stretch;
       }
     }
   </style>
@@ -295,40 +274,42 @@
     <div class="logo">
       <a href="index.html"><img src="Images/YavorTechServices.svg" alt="Yavor Tech Services Logo" /></a>
     </div>
-    <button class="menu-toggle" aria-label="Ouvrir le menu" aria-expanded="false">&#9776;</button>
-    <ul>
+    <ul id="nav-links">
       <li><a href="index.html">Accueil</a></li>
       <li><a href="services.html">Services</a></li>
       <li><a href="tarifs.html">Tarifs</a></li>
       <li><a href="blog.html">Blog</a></li>
       <li><a href="contact.html" class="active">Contact</a></li>
     </ul>
+    <div class="menu-toggle" id="mobile-menu">
+      <span></span><span></span><span></span>
+    </div>
   </nav>
 </header>
 
-<main>
-  <h1>Contactez-nous</h1>
-  <p class="subtitle">Une question, un devis ou un conseil ? Envoyez-nous un message, nous vous répondrons rapidement.</p>
+<section class="wrapper">
+  <form class="contact-form" action="#" method="POST">
+    <h2>Contactez-nous</h2>
 
-  <div class="form-wrapper">
-    <form id="contactForm" novalidate>
-      <label for="name">Nom complet *</label>
-      <input type="text" id="name" name="name" required placeholder="Votre nom complet" />
+    <label for="name">Nom complet</label>
+    <input type="text" id="name" name="name" placeholder="Votre nom" required />
 
-      <label for="email">Email *</label>
-      <input type="email" id="email" name="email" required placeholder="exemple@domaine.com" />
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" placeholder="Votre email" required />
+    
+    <label for="subject">Sujet</label>
+    <input type="text" id="subject" name="subject" placeholder="Sujet de votre message" required />
 
-      <label for="subject">Sujet *</label>
-      <input type="text" id="subject" name="subject" required placeholder="Sujet de votre message" />
+    <label for="message">Message</label>
+    <textarea id="message" name="message" placeholder="Votre message..." required></textarea>
+    
+    <button type="submit">Envoyer</button>
+  </form>
 
-      <label for="message">Message *</label>
-      <textarea id="message" name="message" required placeholder="Votre message ici..."></textarea>
-
-      <button type="submit">Envoyer</button>
-    </form>
-    <div id="formStatus" aria-live="polite" role="status"></div>
+  <div class="contact-image">
+    <img src="Images/montage-pc.png" alt="Montage PC" />
   </div>
-</main>
+</section>
 
 <footer>
   <div class="footer-container">
@@ -359,58 +340,25 @@
     </div>
   </div>
   <div class="footer-bottom">
-    <div class="footer-left">&copy; <span id="year"></span> Yavor Tech Services - Tous droits réservés.</div>
+    <div class="footer-left">
+      &copy; <span id="year"></span> Yavor Tech Services - Tous droits réservés.
+    </div>
     <div class="footer-right">
-      <a href="#" aria-label="Instagram Yavor Tech Services">Instagram</a>
+      <a href="#">Instagram</a>
     </div>
   </div>
 </footer>
 
-<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
 <script>
-  (function () {
-    emailjs.init("VOTRE_USER_ID"); // Remplace par ton user_id EmailJS
-  })();
-
-  const form = document.getElementById('contactForm');
-  const status = document.getElementById('formStatus');
-
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-
-    if (!form.checkValidity()) {
-      form.reportValidity();
-      return;
-    }
-
-    emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', form)
-      .then(function (response) {
-        console.log('SUCCESS', response);
-        status.style.color = "green";
-        status.textContent = "Merci pour votre message, nous vous répondrons sous 24h !";
-        status.style.display = 'block';
-        form.reset();
-        setTimeout(() => { status.style.display = 'none'; }, 5000);
-      }, function (error) {
-        console.log('FAILED', error);
-        status.style.color = "red";
-        status.textContent = "Désolé, il y a eu un problème lors de l'envoi de votre message.";
-        status.style.display = 'block';
-        setTimeout(() => { status.style.display = 'none'; }, 5000);
-      });
-  });
-
   document.getElementById("year").textContent = new Date().getFullYear();
 
-  // Gestion du menu hamburger
-  const menuToggle = document.querySelector('.menu-toggle');
-  const navUl = document.querySelector('nav ul');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const navLinks = document.getElementById('nav-links');
 
-  menuToggle.addEventListener('click', () => {
-    const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
-    menuToggle.setAttribute('aria-expanded', String(!isExpanded));
-    navUl.classList.toggle('show');
+  mobileMenu.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
   });
 </script>
+
 </body>
 </html>
